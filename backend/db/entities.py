@@ -8,7 +8,7 @@ class Base(DeclarativeBase):
     pass
 
 user_votes = Table(
-    "association_table",
+    "user_votes",
     Base.metadata,
     Column("user", ForeignKey("user.email"), primary_key=True),
     Column("suggestion", ForeignKey("suggestion.id"), primary_key=True),

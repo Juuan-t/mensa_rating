@@ -9,3 +9,6 @@ app.register_blueprint(ae.analytics_bp)
 app.register_blueprint(me.menu_bp)
 app.register_blueprint(ue.user_bp)
 app.register_blueprint(re.ratings_bp)
+
+#sql = text('SELECT * from BOOKS WHERE BOOKS.book_price > 50') 
+#results = engine.execute(sql) 

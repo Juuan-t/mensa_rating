@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from backend.db.dao import UserDao
+from backend.db.user_dao import UserDao
 
 user_bp = Blueprint('user', __name__, url_prefix='/user')
 

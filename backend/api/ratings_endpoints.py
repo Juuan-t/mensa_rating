@@ -1,6 +1,6 @@
 from flask import Blueprint, request
-from backend.db.dao import UserDao
-from backend.db.dao import RatingDAO
+from backend.db.user_dao import UserDao
+from backend.db.rating_dao import RatingDAO
 
 ratings_bp = Blueprint('rating', __name__, url_prefix='/rating')
 
