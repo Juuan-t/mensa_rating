@@ -46,5 +46,12 @@ class UserDAO(DAO):
             user.suggestions.append(suggestion)
             session.commit()
 
+    def check_password(self, email, password):
+        with Session(self.engine) as session:
+            user = self.get_user(email)
+            if user.password == password:
+                return True
+            else:
+                return False
     def password_complexity(self, password):
         pass
