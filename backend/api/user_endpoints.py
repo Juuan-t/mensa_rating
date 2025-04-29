@@ -21,7 +21,7 @@ def registerUser():
 
         UserDao().insert_user(email, name, password)
 
-    return "Method not allowed", 400
+    return "Method not allowed", 405
 
 @user_bp.route('/login', methods=['POST'])
 def login():
@@ -41,5 +41,14 @@ def login():
 
 @user_bp.route('/suggest_dish', methods=['POST'])
 def suggestDish():
-    pass
-    # TODO login user
+    if request.method == 'POST':
+        email = request.form.get('email')
+        description = request.form.get('description')
+
+        if not email or not description:
+            return "email and description required", 400
+        
+        UserDao().insert_suggestion(email, description)
+
+    return "Method not allowed", 405
+
