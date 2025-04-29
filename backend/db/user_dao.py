@@ -45,3 +45,6 @@ class UserDAO(DAO):
             user = session.merge(user)
             user.suggestions.append(suggestion)
             session.commit()
+
+    def password_complexity(self, password):
+        pass
