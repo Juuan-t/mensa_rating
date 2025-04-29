@@ -38,5 +38,6 @@ class RatingDAO(DAO):
                 case "comment":
                     rating.comment = value
                     timestamp = datetime.now
-            
-            session.commit()
+        
+          session.commit()
+
