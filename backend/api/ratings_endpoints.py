@@ -6,8 +6,16 @@ ratings_bp = Blueprint('rating', __name__, url_prefix='/rating')
 
 @ratings_bp.route('/vote_suggstion', methods=['POST'])
 def voteSuggestion():
-    pass
-    # TODO register user
+    if request.method == 'Post':
+        email = request.form.get('email')
+        suggestionID = request.form.get('suggestionID')
+
+        if not email or not suggestionID:
+            return "email or suggestionID required", 400
+        
+        UserDAO().vote_suggestion(email, suggestionID)
+    
+    return "method not allowed", 405
 
 @ratings_bp.route('/rate_dish', methods=['POST'])
 def rateDish():
