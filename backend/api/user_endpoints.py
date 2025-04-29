@@ -14,12 +14,13 @@ def registerUser():
             return "error", 400
         
         if not UserDAO().password_complexity(password):
-            return "Passwort unsicher", 400
+            return "Passwort unsicher", 500
         
         if UserDAO().get_user(email):
-            return "Nutzer existiert bereits", 400
+            return "Nutzer existiert bereits", 500
 
         UserDAO().insert_user(email, name, password)
+        return "success", 200
 
     return "Method not allowed", 405
 
@@ -49,6 +50,7 @@ def suggestDish():
             return "email and description required", 400
         
         UserDAO().insert_suggestion(email, description)
+        return "success", 200
 
     return "Method not allowed", 405
 
