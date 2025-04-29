@@ -1,14 +1,11 @@
-from backend.db.user_dao import UserDAO
+from flask import Flask
+import backend.api.analytics_endpoints as ae
+import backend.api.menu_endpoints as me
+import backend.api.ratings_endpoints as re
+import backend.api.user_endpoints as ue
 
-dao = UserDAO()
-
-dao.insert_user("karl.klammer@office.de", "Karl Klammer", "12345")
-dao.insert_user("s.schwarz@gmx.de", "Sabine Schwarz", "sdfk§46")
-dao.insert_user("will-mates@gmail.com", "Will Mates", "qwertz")
-
-dao.delete_user("karl.klammer@office.de")
-
-dao.insert_suggestion("s.schwarz@gmx.de", "Pizza Bianca (https://rezepte.se/....)")
-user = dao.get_user("s.schwarz@gmx.de")
-
-print(user)
+app = Flask(__name__)
+app.register_blueprint(ae.analytics_bp)
+app.register_blueprint(me.menu_bp)
+app.register_blueprint(ue.user_bp)
+app.register_blueprint(re.ratings_bp)

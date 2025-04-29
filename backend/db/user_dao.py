@@ -22,7 +22,7 @@ class UserDAO(DAO):
         with Session(self.engine) as session:
             stmt = select(User).where(User.email == email)
             user = session.scalars(stmt).one()
-
+            print(user.suggestions)
             return user
         
     def insert_suggestion(self, email, description):
