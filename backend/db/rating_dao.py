@@ -20,7 +20,6 @@ class RatingDAO(DAO):
             session.delete(rating)
             session.commit()
 
-
     def get_rating(self, dish_id, user_email, timestamp):
         with Session(self.engine) as session:
             stmt = select(Rating).where(Rating.dish_id == dish_id and Rating.user_email == user_email and Rating.timestamp == timestamp)
@@ -40,4 +39,4 @@ class RatingDAO(DAO):
                     rating.comment = value
                     timestamp = datetime.now
             
-        session.commit()
+            session.commit()

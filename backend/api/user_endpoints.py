@@ -6,9 +6,9 @@ user_bp = Blueprint('user', __name__, url_prefix='/user')
 @user_bp.route('/register', methods=['POST'])
 def registerUser():
     if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        name = request.form.get('name')
+        email = request.json.get('email')
+        password = request.json.get('password')
+        name = request.json.get('name')
 
         if not email or not password or not name:
             return "error", 400
@@ -21,13 +21,13 @@ def registerUser():
 
         UserDAO().insert_user(email, name, password)
 
-    return "Method not allowed", 405
+    return True, 405
 
 @user_bp.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
+        email = request.json.get('email')
+        password = request.json.get('password')
 
         if not email or not password:
             return "Email and password are required", 400
@@ -37,18 +37,18 @@ def login():
         else:
             return "Invalid email or password", 401
         
-    return "Method not allowed", 405
+    return True, 405
 
 @user_bp.route('/suggest_dish', methods=['POST'])
 def suggestDish():
     if request.method == 'POST':
-        email = request.form.get('email')
-        description = request.form.get('description')
+        email = request.json.get('email')
+        description = request.json.get('description')
 
         if not email or not description:
             return "email and description required", 400
         
         UserDAO().insert_suggestion(email, description)
 
-    return "Method not allowed", 405
+    return True, 405
 
