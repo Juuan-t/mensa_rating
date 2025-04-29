@@ -53,3 +53,5 @@ class UserDAO(DAO):
                 return True
             else:
                 return False
+    def password_complexity(self, password):
+        pass
