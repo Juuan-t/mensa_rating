@@ -46,6 +46,14 @@ class UserDAO(DAO):
             user.suggestions.append(suggestion)
             session.commit()
 
+    def vote_suggestion(self, email, suggestionID):
+        with Session(self.engine) as session:
+            stmt = select(Suggestion).where(Suggestion.suggestionID == suggestionID)
+            suggestion = session.scalars(stmt).one()
+            user = self.get_user(email)
+            user.suggestions_voted.append(suggestion)
+            session.commit()
+
     def check_password(self, email, password):
         with Session(self.engine) as session:
             user = self.get_user(email)
