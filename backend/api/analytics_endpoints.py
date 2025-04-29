@@ -8,7 +8,7 @@ def getDishRatingsSuggestion():
     # TODO Ratings der Gerichte geordnet nach Beliebtheit
 
 @analytics_bp.route('/suggestion_votes')
-def getDishRatingsSuggestion():
+def getSuggestionVotes():
     pass
     # TODO Vorschläge geordnet nach Zeitstempel und Anzahl Votes
 
