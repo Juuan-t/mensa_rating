@@ -22,8 +22,21 @@ class UserDAO(DAO):
         with Session(self.engine) as session:
             stmt = select(User).where(User.email == email)
             user = session.scalars(stmt).one()
-            print(user.suggestions)
+
             return user
+        
+    def alter_user(self, email, attribute, value):
+        with Session(self.engine) as session:
+            stmt = select(User).where(User.email == email)
+            user = session.scalars(stmt).one()
+            match attribute:
+                case "name":
+                    user.name = value
+
+                case "password":
+                    user.password = value
+
+            session.commit()
         
     def insert_suggestion(self, email, description):
         with Session(self.engine) as session:
