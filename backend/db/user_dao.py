@@ -21,9 +21,12 @@ class UserDAO(DAO):
     def get_user(self, email):
         with Session(self.engine) as session:
             stmt = select(User).where(User.email == email)
-            user = session.scalars(stmt).one()
-
-            return user
+            
+            try:
+                user = session.scalars(stmt).one()
+                return user
+            except:
+                return None
         
     def alter_user(self, email, attribute, value):
         with Session(self.engine) as session:
@@ -62,4 +65,4 @@ class UserDAO(DAO):
             else:
                 return False
     def password_complexity(self, password):
-        pass
+        return True
