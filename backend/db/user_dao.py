@@ -45,3 +45,11 @@ class UserDAO(DAO):
             user = session.merge(user)
             user.suggestions.append(suggestion)
             session.commit()
+
+    def check_password(self, email, password):
+        with Session(self.engine) as session:
+            user = self.get_user(email)
+            if user.password == password:
+                return True
+            else:
+                return False
